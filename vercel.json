@@ -1,6 +1,10 @@
 {
   "version": 2,
-  "name": "lumilink",
+  "rewrites": [
+    { "source": "/api/(.*)", "destination": "/backend/server.js" },
+    { "source": "/:shortCode([a-zA-Z0-9]{6})", "destination": "/backend/server.js" },
+    { "source": "/((?!api|assets|.*\\..*).*)", "destination": "/frontend/index.html" }
+  ],
   "builds": [
     {
       "src": "backend/server.js",
@@ -11,10 +15,5 @@
       "use": "@vercel/static-build",
       "config": { "distDir": "dist" }
     }
-  ],
-  "routes": [
-    { "src": "/api/(.*)", "dest": "backend/server.js" },
-    { "src": "/([^/]{6})", "dest": "backend/server.js" },
-    { "src": "/(.*)", "dest": "frontend/$1" }
   ]
 }
