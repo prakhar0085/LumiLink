@@ -12,9 +12,9 @@
     }
   ],
   "rewrites": [
-    { "source": "/api/(.*)", "destination": "/backend/server.js" },
-    { "source": "/:shortCode([a-zA-Z0-9]{6})", "destination": "/backend/server.js" },
-    { "source": "/assets/(.*)", "destination": "/frontend/assets/$1" },
-    { "source": "/(.*)", "destination": "/frontend/index.html" }
+    { "source": "/api/(.*)", "destination": "backend/server.js" },
+    { "source": "/:shortCode([a-zA-Z0-9]{6})", "destination": "backend/server.js" },
+    { "source": "/assets/(.*)", "destination": "frontend/assets/$1" },
+    { "source": "/(.*)", "destination": "frontend/index.html" }
   ]
 }
