@@ -21,7 +21,7 @@ exports.createShortUrl = async (req, res) => {
       return res.status(400).json({ message: 'Custom alias already in use' });
     }
   } else {
-    shortCode = nanoid(8);
+    shortCode = nanoid(5);
   }
 
   const shortUrl = `${baseUrl}/${shortCode}`;
