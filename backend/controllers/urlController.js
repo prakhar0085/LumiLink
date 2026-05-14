@@ -3,7 +3,10 @@ const { nanoid } = require('nanoid');
 
 exports.createShortUrl = async (req, res) => {
   const { originalUrl, customAlias, expiresAt } = req.body;
-  const baseUrl = process.env.BASE_URL || 'http://localhost:5000';
+  
+  // Use the host from the request if BASE_URL is not set
+  const protocol = req.headers['x-forwarded-proto'] || req.protocol;
+  const baseUrl = process.env.BASE_URL || `${protocol}://${req.get('host')}`;
 
   if (!originalUrl) {
     return res.status(400).json({ message: 'Original URL is required' });
