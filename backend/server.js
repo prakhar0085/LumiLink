@@ -16,8 +16,15 @@ const app = express();
 
 // Middleware
 app.use(express.json());
-app.use(cors());
-app.use(helmet());
+app.use(cors({
+  origin: true, // Allow all origins to communicate with the API
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+app.use(helmet({
+  contentSecurityPolicy: false, // Disable CSP to prevent blocking frontend assets on some hosts
+}));
 app.use(morgan('dev'));
 app.use(useragent.express());
 
